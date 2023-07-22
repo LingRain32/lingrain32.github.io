@@ -3,7 +3,7 @@
   <head>
      
     <meta charset="UTF-8">
-    <title>Hello World - LingRain no Blog</title>
+    <title>高精度算法简介 - LingRain no Blog</title>
     <link rel="shortcut icon" href="/static/img/icon.png">
     <link rel="icon" href="/static/img/icon.png" sizes="192x192"/>
     
@@ -15,7 +15,7 @@
 
     <meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1"/>
     <meta property="og:site_name" content="LingRain no Blog">
-    <meta property="og:title" content="Hello World"/>
+    <meta property="og:title" content="高精度算法简介"/>
     
 <meta name="generator" content="Hexo 6.3.0"></head>
 
@@ -43,7 +43,7 @@
         
             <a href="/about/me">关于我</a>
         
-            <a href="/friends">朋友们</a>
+            <a href="/friends/myfriend">朋友们</a>
         
     </nav>
 </header>
@@ -51,7 +51,7 @@
     <main>
     <div class="wrap min">
         <section class="post-title">
-            <h2>Hello World</h2>
+            <h2>高精度算法简介</h2>
             <div class="post-meta">
                 <time class="date">2023.07.22</time>
             
@@ -59,19 +59,17 @@
         </section>
         <article class="post-content">
         
-            <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+            <h4 id="什么是高精度算法？"><a href="#什么是高精度算法？" class="headerlink" title="什么是高精度算法？"></a>什么是高精度算法？</h4><p>尽管C++这类高级语言已经提供完善的计算符号来处理数据，但它任然无法处理大的数据。当我们有需要处理高精度数据的时候，我们就需要使用高精度算法。</p>
+<p>高精度算法计算需要处理下列三个问题：</p>
+<blockquote>
+<p>1）数据的接收与存储</p>
+<p>2）位数的确定，防止数组越界</p>
+<p>3）进位、错位处理</p>
+</blockquote>
+<p>当数据特别大的时候，我们可以将它作为字符串输入，随后手动将它们提取出来放到数组中。C++如今已经废弃了gets()函数，所以用gets()来输入字符串已经不可能。我所使用的是fgets。它的参数如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">char</span> *<span class="title">fgets</span><span class="params">(<span class="type">char</span> *str, <span class="type">int</span> n, FILE *stream)</span></span></span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<p>char *str要求我们输入字符数组，int n表示了输入的位数（注意换位符也被算入其中）FILE *stream为常数。</p>
 
         </article>
         <section class="post-near">
@@ -80,7 +78,7 @@
                     <li>上一篇: 看完啦 (つд⊂)</li>
                 
                 
-                    <li>下一篇: 看完啦 (つд⊂)</li>
+                    <li>下一篇: <a href="/2023/07/22/%E4%B8%A4%E9%81%93%E5%B0%8F%E9%A2%98/">两道小题</a></li>
                 
             </ul>
         </section>
@@ -89,11 +87,11 @@
         <section class="post-author">
         
             <figure class="author-avatar">
-                <img src="https://sdn.geekzu.org/avatar/d22eb460ecab37fcd7205e6a3c55c228?s=200&r=X&d=" alt="Hingle" />
+                <img src="https://img1.imgtp.com/2023/07/22/Sc0sqL9Y.jpeg" alt="雨霖铃音" />
             </figure>
         
             <div class="author-info">
-                <h4>Hingle</h4>
+                <h4>雨霖铃音</h4>
                 <p>生生生生暗生始，死死死死冥死终。</p>
             </div>
         </section>
@@ -110,7 +108,7 @@
             <div class="row">
                 <div class="col-m-4">
                     <h3 class="title-recent">最新文章：</h3>
-                    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2023/07/22/hello-world/">Hello World</a></li></ul>
+                    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2023/07/22/%E9%AB%98%E7%B2%BE%E5%BA%A6%E7%AE%97%E6%B3%95%E7%AE%80%E4%BB%8B/">高精度算法简介</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/07/22/%E4%B8%A4%E9%81%93%E5%B0%8F%E9%A2%98/">两道小题</a></li></ul>
                 </div>
                 <div class="col-m-4">
                     <h3 class="title-date">时光机：</h3>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+  <head>
+     
+    <meta charset="UTF-8">
+    <title>两道小题 - LingRain no Blog</title>
+    <link rel="shortcut icon" href="/static/img/icon.png">
+    <link rel="icon" href="/static/img/icon.png" sizes="192x192"/>
+    
+<link rel="stylesheet" href="/static/kico.css">
+<link rel="stylesheet" href="/static/hingle.css">
+
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1"/>
+    <meta property="og:site_name" content="LingRain no Blog">
+    <meta property="og:title" content="两道小题"/>
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+  <body>
+    <header>
+    <div class="head-title">
+        <h4>LingRain no Blog</h4>
+    </div>
+    <div class="head-action">
+        <div class="toggle-btn"></div>
+        <div class="light-btn"></div>
+        <div class="search-btn"></div>
+    </div>
+    <form class="head-search" method="post">
+        <input type="text" name="s" placeholder="搜索什么？">
+    </form>
+    <nav class="head-menu">
+        <a href="/">首页</a>
+        <div class="has-child">
+            <a>分类</a>
+            <div class="sub-menu">
+                
+            </div>
+        </div>
+        
+            <a href="/about/me">关于我</a>
+        
+            <a href="/friends/myfriend">朋友们</a>
+        
+    </nav>
+</header>
+
+    <main>
+    <div class="wrap min">
+        <section class="post-title">
+            <h2>两道小题</h2>
+            <div class="post-meta">
+                <time class="date">2023.07.22</time>
+            
+            </div>
+        </section>
+        <article class="post-content">
+        
+            <h4 id="流感筛查"><a href="#流感筛查" class="headerlink" title="流感筛查"></a>流感筛查</h4><blockquote>
+<p>目前正是甲流盛行时期，为了更好地进行分流治疗，医院在挂号时要求对病人的体温和咳嗽情况进行检查，对于体温超过37.5度（含等于37.5度）并且咳嗽的病人初步判定为甲流病人（初筛）。现需要统计某天前来挂号就诊的病人中有多少人被初筛为甲流病人。</p>
+<p>输入：第一行是某天前来挂号就诊的病人数n。(n&lt;200)</p>
+<p>其后有n行，每行是病人的信息，包括三个信息：姓名（字符串，不含空格，最多8个字符）、体温（float）、是否咳嗽（整数，1表示咳嗽，0表示不咳嗽）。每行三个信息之间以一个空格分开。</p>
+<p>输出：按输入顺序依次输出所有被筛选为甲流的病人的姓名，每个名字占一行。之后在输出一行，表示被筛选为甲流的病人数量。</p>
+</blockquote>
+<p><strong>输入样例：</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">5</span><br><span class="line">Zhang 38.3 0</span><br><span class="line">Li 37.5 1</span><br><span class="line">Wang 37.1 1</span><br><span class="line">Zhao 39.0 1</span><br><span class="line">Liu 38.2 1</span><br></pre></td></tr></table></figure>
+
+<p><strong>输出样例</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Li</span><br><span class="line">Zhao</span><br><span class="line">Liu</span><br><span class="line">3</span><br></pre></td></tr></table></figure>
+
+<p><strong>代码实现</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">struct</span></span><br><span class="line">&#123;</span><br><span class="line">    string name, pname;</span><br><span class="line">    <span class="type">float</span> tem;</span><br><span class="line">    <span class="type">bool</span> hel;</span><br><span class="line">&#125; a[<span class="number">1001</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> n,d;</span><br><span class="line">    cin &gt;&gt; n;</span><br><span class="line">    <span class="type">int</span> p=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (n &gt; <span class="number">200</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;请重新输入：&quot;</span>;</span><br><span class="line">        cin &gt;&gt; n;</span><br><span class="line">    &#125; <span class="comment">//判断病人数是否超出范围</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        cin &gt;&gt; a[i].name &gt;&gt; a[i].tem &gt;&gt; a[i].hel;</span><br><span class="line">        <span class="keyword">if</span> (a[i].tem &gt;= <span class="number">37.5</span> &amp;&amp; a[i].hel)</span><br><span class="line">        &#123;</span><br><span class="line">            a[p++].pname = a[i].name;</span><br><span class="line">            d++;</span><br><span class="line">        &#125; <span class="comment">//判断是否出现症状</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> k = <span class="number">0</span>; k &lt; p; k++)</span><br><span class="line">    &#123;</span><br><span class="line">        cout &lt;&lt; a[k].pname &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; d &lt;&lt; endl; <span class="comment">//输出</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="碱基配对"><a href="#碱基配对" class="headerlink" title="碱基配对"></a>碱基配对</h4><blockquote>
+<p>脱氧核糖核酸(DNA)由两条互补的碱基链以双螺旋的方式结合而成。而构成DNA的碱基共有4种，分别为腺瞟呤(A)、鸟嘌呤(G)、胸腺嘧啶(T)和胞嘧啶(C)。我们知道，在两条互补碱基链的对应位置上，腺瞟呤总是和胸腺嘧啶配对，鸟嘌呤总是和胞嘧啶配对。你的任务就是根据一条单链上的碱基序列，给出对应的互补链上的碱基序列。</p>
+<p>输入：一个字符串，表示一条碱基链。这个字符串只含有大写字母A、T、G、C，分别表示腺瞟呤、胸腺嘧啶、鸟嘌呤和胞嘧啶。字符串长度不超过255。</p>
+<p>输出：一个只含有大写字母A、T、G、C的字符串，为与输入的碱基链互补的碱基链。</p>
+</blockquote>
+<p><strong>输入样例：</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ATATGGATGGTGTTTGGCTCTG</span><br></pre></td></tr></table></figure>
+
+<p><strong>输出样例：</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TATACCTACCACAAACCGAGAC</span><br></pre></td></tr></table></figure>
+
+<p><strong>代码实现</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;cstdio&gt;</span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    char u;</span><br><span class="line">    char A[1001];</span><br><span class="line">    int n=0;</span><br><span class="line">    int k;</span><br><span class="line">    </span><br><span class="line">    enter:while ((A[n++]=getchar())!= &#x27;\n&#x27;); //输入字符串存储到数组</span><br><span class="line">    if (n&gt;255)</span><br><span class="line">    &#123;</span><br><span class="line">        cout&lt;&lt;&quot;请重试&quot;&lt;&lt;endl;</span><br><span class="line">        goto enter;</span><br><span class="line">    &#125;</span><br><span class="line">    for(int i=0;i&lt;=n-2;++i) //判断是否有错误字符</span><br><span class="line">    &#123;</span><br><span class="line">        if (A[i] !=  &#x27;A&#x27; &amp;&amp;A[i] !=&#x27;C&#x27;&amp;&amp;A[i] !=&#x27;G&#x27;&amp;&amp;A[i] !=&#x27;T&#x27;) </span><br><span class="line">        &#123;</span><br><span class="line">            cout &lt;&lt;&quot;请重试&quot;&lt;&lt;endl;</span><br><span class="line">            </span><br><span class="line">            for (k=0;k&lt;=i;++k)</span><br><span class="line">            &#123;</span><br><span class="line">                A[k]=0;</span><br><span class="line">                n=0; //初始化数组</span><br><span class="line">                i=0;</span><br><span class="line">            &#125;</span><br><span class="line">            k=0;</span><br><span class="line">            goto enter;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    A[n-1]=0;</span><br><span class="line">    for (int o=0;o&lt;=n-2;o++)</span><br><span class="line">    &#123;</span><br><span class="line">        u = A[o];</span><br><span class="line">        switch (u)</span><br><span class="line">        &#123;</span><br><span class="line">            case &#x27;A&#x27;:</span><br><span class="line">                 A[o] =&#x27;T&#x27;;</span><br><span class="line">                 break;</span><br><span class="line">            case &#x27;T&#x27;:</span><br><span class="line">                 A[o] =&#x27;A&#x27;;</span><br><span class="line">                 break;</span><br><span class="line">            case &#x27;G&#x27;:</span><br><span class="line">                 A[o] =&#x27;C&#x27;;</span><br><span class="line">                 break;</span><br><span class="line">            case &#x27;C&#x27;:</span><br><span class="line">                 A[o] =&#x27;G&#x27;;</span><br><span class="line">                 break;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt;A&lt;&lt;endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+        </article>
+        <section class="post-near">
+            <ul>
+                
+                    <li>上一篇: <a href="/2023/07/22/%E9%AB%98%E7%B2%BE%E5%BA%A6%E7%AE%97%E6%B3%95%E7%AE%80%E4%BB%8B/">高精度算法简介</a></li>
+                
+                
+                    <li>下一篇: 看完啦 (つд⊂)</li>
+                
+            </ul>
+        </section>
+        
+    
+        <section class="post-author">
+        
+            <figure class="author-avatar">
+                <img src="https://img1.imgtp.com/2023/07/22/Sc0sqL9Y.jpeg" alt="雨霖铃音" />
+            </figure>
+        
+            <div class="author-info">
+                <h4>雨霖铃音</h4>
+                <p>生生生生暗生始，死死死死冥死终。</p>
+            </div>
+        </section>
+    
+    </div>
+</main>
+
+    <footer>
+    <div class="buttons">
+        <a class="to-top" href="#"></a>
+    </div>
+    <div class="wrap min">
+        <section class="widget">
+            <div class="row">
+                <div class="col-m-4">
+                    <h3 class="title-recent">最新文章：</h3>
+                    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2023/07/22/%E9%AB%98%E7%B2%BE%E5%BA%A6%E7%AE%97%E6%B3%95%E7%AE%80%E4%BB%8B/">高精度算法简介</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/07/22/%E4%B8%A4%E9%81%93%E5%B0%8F%E9%A2%98/">两道小题</a></li></ul>
+                </div>
+                <div class="col-m-4">
+                    <h3 class="title-date">时光机：</h3>
+                    <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">七月 2023</a></li></ul>
+                </div>
+                <div class="col-m-4">
+                    <h3 class="title-tags">标签云：</h3>
+                    
+                </div>
+            </div>
+        </section>
+        <section class="sub-footer">
+            <p>© 2023 <a href="/">LingRain no Blog</a>. All Rights Reserved. Theme By <a href="https://github.com/Dreamer-Paul/Hingle" target="_blank" rel="nofollow">Hingle</a>.</p>
+        </section>
+    </div>
+</footer>
+
+
+<script src="/static/kico.js"></script>
+<script src="/static/hingle.js"></script>
+
+
+<script>var hingle = new Paul_Hingle({"copyright":true,"night":true});</script>
+
+  </body>
+</html>
